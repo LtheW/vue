@@ -3,11 +3,17 @@ import VueRouter from 'vue-router'
 import Main from '../views/Main.vue'
 import Submit from'../views/Submit.vue'
 import Maintainer_Add from'../views/Maintainer/Add.vue'
+import Login from'../views/Login.vue'
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
+    name: 'Login',
+    component: Login
+  },
+  {
+    path: '/main',
     name: 'Main',
     component: Main,
     children: [

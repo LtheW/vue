@@ -3,13 +3,13 @@
   <div>
     <el-button @click="add()" type="success" size="medium">添加维修人员</el-button>
     <el-table :data="tableData" style="width: 100%" max-height="100%">
-      <el-table-column fixed prop="jobNumber" label="工号" width="200">
+      <el-table-column fixed prop="jobNumber" label="工号" width="300">
       </el-table-column>
-      <el-table-column prop="name" label="姓名" width="200"> </el-table-column>
-      <el-table-column prop="sex" label="性别" width="200"> </el-table-column>
-      <el-table-column prop="contactInformation" label="联系方式" width="250">
+      <el-table-column prop="name" label="姓名" width="260"> </el-table-column>
+      <el-table-column prop="sex" label="性别" width="260"> </el-table-column>
+      <el-table-column prop="contactInformation" label="联系方式" width="300">
       </el-table-column>
-      <el-table-column fixed="right" label="操作" width="250">
+      <el-table-column fixed="right" label="操作" width="350">
         <template slot-scope="scope">
           <el-button @click="Booking(scope.row)" type="danger" size="small">
             删除

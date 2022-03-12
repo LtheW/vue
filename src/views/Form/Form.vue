@@ -7,22 +7,22 @@
       fixed
       prop="workorderNumber"
       label="工单号"
-      width="100">
+      width="150">
     </el-table-column>
     <el-table-column
       prop="contactInformation"
       label="联系方式"
-      width="150">
+      width="200">
     </el-table-column>
     <el-table-column
       prop="address"
       label="地址"
-      width="150">
+      width="200">
     </el-table-column>
     <el-table-column
       prop="workorderContent"
       label="内容描述"
-      width="200">
+      width="300">
     </el-table-column>
     <el-table-column
       prop="initiationTime"
@@ -32,7 +32,7 @@
     <el-table-column
       prop="workorderState"
       label="工单状态"
-      width="120">
+      width="160">
     </el-table-column>
     <el-table-column
       prop="updateTime"
@@ -42,7 +42,7 @@
     <el-table-column
       fixed="right"
       label="操作"
-      width="150">
+      width="250">
       <template slot-scope="scope">
         <el-button
           @click="Booking(scope.row)"
@@ -59,7 +59,8 @@
   export default {
     methods: {
       Booking(row) {
-        this.$router.push({name:'submit',params: { flight_ID:row.flight_ID,trip_ID:row.trip_ID}})
+        console.log(row.workorderNumber);
+        this.$router.push({name:'submit',params: {workorderNumber:row.workorderNumber}})
       }
     },
     data() {

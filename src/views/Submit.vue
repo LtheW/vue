@@ -1,25 +1,81 @@
 <template>
-  <el-form ref="form" :model="form" label-width="80px">
-    <el-form-item label="联系方式" style="width: 50%">
-      <el-input v-model="form.telephone"></el-input>
-    </el-form-item>
-    <el-form-item label="地址" style="width: 50%">
-      <el-input v-model="form.address"></el-input>
-    </el-form-item>
-    <el-form-item label="描述" style="width: 50%">
-      <el-input v-model="form.description"></el-input>
-    </el-form-item>
-    <el-form-item label="联系方式" style="width: 50%">
-      <el-input v-model="form.telephone"></el-input>
-    </el-form-item>
-    <el-form-item label="密码" style="width: 50%">
-      <el-input v-model="form.password"></el-input>
-    </el-form-item>
-    <el-form-item>
-      <el-button type="primary" @click="onSubmit">立即创建</el-button>
-      <el-button @click="goBack">取消</el-button>
-    </el-form-item>
-    </el-form>
+  <div class="form">
+    <div>
+      <el-card>
+        <el-descriptions
+          class="margin-top"
+          title="基本信息："
+          :column="3"
+          :size="size"
+          border
+        >
+          <template slot="extra">
+            <el-button type="primary" size="small">操作</el-button>
+          </template>
+          <el-descriptions-item width="150">
+            <template slot="label">
+              <i class="el-icon-user"></i>
+              工单编号
+            </template>
+            {{ form.workorderNumber }}
+          </el-descriptions-item>
+          <el-descriptions-item>
+            <template slot="label">
+              <i class="el-icon-user"></i>
+              学生学号
+            </template>
+            {{ form.fkStudentNumber }}
+          </el-descriptions-item>
+          <el-descriptions-item>
+            <template slot="label">
+              <i class="el-icon-mobile-phone"></i>
+              手机号
+            </template>
+            {{ form.contactInformation }}
+          </el-descriptions-item>
+          <el-descriptions-item>
+            <template slot="label">
+              <i class="el-icon-location-outline"></i>
+              宿舍
+            </template>
+            {{ form.address }}
+          </el-descriptions-item>
+          <el-descriptions-item>
+            <template slot="label">
+              <i class="el-icon-office-building"></i>
+              预约上门时间
+            </template>
+            {{ form.fixedTime }}
+          </el-descriptions-item>
+        </el-descriptions>
+      </el-card>
+    </div>
+
+    <div class="p">
+      <el-card>
+        <i class="title">工单流程：</i>
+        <div>
+          <el-steps
+            :space="600"
+            :active="1"
+            finish-status="success"
+            align-center="true"
+            style="padding-top: 40px"
+          >
+            <el-step title="派单中"></el-step>
+            <el-step title="维修中"></el-step>
+            <el-step title="维修完成"></el-step>
+          </el-steps>
+        </div>
+      </el-card>
+      <div class="p">
+        <el-card>
+          <h5 class="title">工单详情：</h5>
+          <p >{{form.workorderContent}}</p>
+        </el-card>
+      </div>
+    </div>
+  </div>
 </template>
 <script>
 export default {
@@ -56,7 +112,7 @@ export default {
       options2: [
         {
           value: "01",
-          label: "一号", 
+          label: "一号",
         },
         {
           value: "02",
@@ -67,28 +123,52 @@ export default {
           label: "三号",
         },
       ],
-      form: {
-        name: "",
-        description: "",
-        telephone: "",
-        passportnumber: "",
-        address:"",
-        password:""
-      },
-      flight_ID: "",
-      trip_ID: "",
+      form: {},
+      workorderNumber: "",
     };
   },
   created() {
-    this.flight_ID = this.$route.params.flight_ID;
-    this.trip_ID = this.$route.params.trip_ID;
+    this.workorderNumber = this.$route.params.workorderNumber;
+    this.Load();
   },
   methods: {
     goBack() {
       this.$router.go(-1);
     },
-    onSubmit() {
-    }
+    onSubmit() {},
+    Load() {
+      this.$http({
+        url: "/api/administer/getorder",
+        method: "get",
+        headers: { "X-Requested-With": "XMLHttpRequest" },
+        params: {
+          workorder_number: this.workorderNumber,
+        }, //传值 如：params:{id:1,name:"gw"}
+      }).then((res) => {
+        this.form = res.data.data[0];
+        console.log(this.form);
+      });
+    },
   },
 };
 </script>
+
+<style >
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+}
+
+.title {
+  font-size: 16px;
+  font-weight: 700;
+}
+.p {
+  padding-top: 20px;
+}
+.border{
+  border:1px solid grey;
+}
+</style>

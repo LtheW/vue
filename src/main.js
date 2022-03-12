@@ -9,6 +9,7 @@ import '@/assets/scss/reset.scss' //全局样式
 import Axios from 'axios';//后台交互
 import Antd from 'ant-design-vue';
 import 'ant-design-vue/dist/antd.css';
+import 'font-awesome/scss/font-awesome.scss'
 Vue.prototype.$http=Axios
 //defaults 设置全局默认路径
 Axios.defaults.baseURL="/"

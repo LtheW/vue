@@ -52,14 +52,14 @@ export default {
         {
           path: "/form",
           name: "form",
-          label: "航班",
+          label: "工单管理",
           icon: "video-play",
           url: "Form/Form",
         },
         {
           path: "/home",
           name: "home",
-          label: "查询",
+          label: "维修人员管理",
           icon: "user",
           url: "Home/Home",
         },
@@ -94,7 +94,7 @@ export default {
 
 <style lang="scss" scoped>
 .el-menu {
-  height: 800px;
+  height: 100%;
   border: none;
   h3 {
     color: #ffffff;
@@ -104,6 +104,6 @@ export default {
 }
 .el-menu-vertical-demo:not(.el-menu--collapse) {
   width: 200px;
-  min-height: 800px;
+  min-height: 100vh;
 }
 </style>

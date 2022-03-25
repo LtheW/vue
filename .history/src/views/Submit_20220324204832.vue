@@ -85,13 +85,16 @@
   </div>
 </template>
 <script>
+import ImgCheckbox from '../components/checkbox/ImgCheckbox.vue';
 export default {
+  components: { ImgCheckbox },
   data() {
     return {
+     
       form: {},
       workorderNumber: "",
       url: "https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg",
-      srcList: [],
+      srcList: "",
     };
   },
   created() {
@@ -114,15 +117,9 @@ export default {
       }).then((res) => {
         this.form = res.data.data[0];
         console.log(this.form);
-        var jsonstr = JSON.parse(res.data.data[0].pictureAddress);
-        var arr = this.srcList;
-        for (var i = 0; i < 3; i++) {
-          if (jsonstr[i] == null) {
-            break;
-          }
-          arr.push(jsonstr[i]);
-        }
-        this.srcList = arr;
+        var jsonstr=JSON.parse(res.data.data[0].pictureAddress);
+        this.srcList=jsonstr;
+        console.log(jsonstr);
       });
     },
   },

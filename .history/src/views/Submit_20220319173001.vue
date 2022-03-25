@@ -88,10 +88,55 @@
 export default {
   data() {
     return {
+      options: [
+        {
+          value: "1",
+          label: "头等舱",
+        },
+        {
+          value: "2",
+          label: "商务舱",
+        },
+        {
+          value: "3",
+          label: "经济舱",
+        },
+      ],
+      options1: [
+        {
+          value: "01",
+          label: "一排",
+        },
+        {
+          value: "02",
+          label: "二排",
+        },
+        {
+          value: "03",
+          label: "三排",
+        },
+      ],
+      options2: [
+        {
+          value: "01",
+          label: "一号",
+        },
+        {
+          value: "02",
+          label: "二号",
+        },
+        {
+          value: "03",
+          label: "三号",
+        },
+      ],
       form: {},
       workorderNumber: "",
       url: "https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg",
-      srcList: [],
+      srcList: [
+        "https://fuss10.elemecdn.com/8/27/f01c15bb73e1ef3793e64e6b7bbccjpeg.jpeg",
+        "https://fuss10.elemecdn.com/1/8e/aeffeb4de74e2fde4bd74fc7b4486jpeg.jpeg",
+      ],
     };
   },
   created() {
@@ -114,15 +159,6 @@ export default {
       }).then((res) => {
         this.form = res.data.data[0];
         console.log(this.form);
-        var jsonstr = JSON.parse(res.data.data[0].pictureAddress);
-        var arr = this.srcList;
-        for (var i = 0; i < 3; i++) {
-          if (jsonstr[i] == null) {
-            break;
-          }
-          arr.push(jsonstr[i]);
-        }
-        this.srcList = arr;
       });
     },
   },

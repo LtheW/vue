@@ -1,16 +1,13 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Main from '../views/Main.vue'
-import Submit from '../views/Results/Submit.vue'
+import Submit from '../views/Result/Submit.vue'
 import Maintainer_Add from '../views/Maintainer/Add.vue'
 import Login from '../views/Login.vue'
 import Repaired from '../views/Results/Repaired.vue'
-import Completed from '../views/Results/Completed.vue'
 Vue.use(VueRouter)
 
-const routes = [
-  {
-  
+const routes = [{
     path: '/',
     name: 'Login',
     component: Login
@@ -21,8 +18,8 @@ const routes = [
     component: Main,
     children: [{
         path: '/',
-        name: 'repair',
-        component: () => import('../views/Results/Repaired.vue'),
+        name: 'home',
+        component: () => import('@views/Results/Repaired'),
       },
       {
         path: '/form',
@@ -30,24 +27,14 @@ const routes = [
         component: () => import('@/views/Form/Form')
       },
       {
-        path: '/maintainer',
-        name: 'Maintainer',
+        path: '/home',
+        name: 'home',
         component: () => import('@/views/Maintainer/Maintainer')
       },
       {
         path: '/submit',
         name: 'submit',
         component: Submit,
-      },
-      {
-        path: '/repaired',
-        name: 'repaired',
-        component: Repaired,
-      },
-      {
-        path: '/completed',
-        name: 'completed',
-        component: Completed,
       },
 
       {

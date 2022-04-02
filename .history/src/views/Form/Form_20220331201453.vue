@@ -52,7 +52,7 @@
             @size-change="handleSizeChange"
             @current-change="handleCurrentChange"
             :current-page="currentPage"
-            :page-sizes="[5, 10, 20]"
+            :page-sizes="[1, 5, 10, 20]"
             :page-size="pageSize"
             layout="total, sizes, prev, pager, next, jumper"
             :total="tableData.length"
@@ -61,12 +61,7 @@
         </div>
       </el-tab-pane>
       <el-tab-pane label="待维修" name="second">
-        <el-table :data="
-            tableData1.slice(
-              (currentPage - 1) * pageSize,
-              currentPage * pageSize
-            )
-          " style="width: 100%" max-height="100%">
+        <el-table :data="tableData1" style="width: 100%" max-height="100%">
           <el-table-column
             fixed
             prop="workorderNumber"
@@ -101,28 +96,10 @@
             </template>
           </el-table-column>
         </el-table>
-        <div class="block" style="margin-top: 15px">
-          <el-pagination
-            align="center"
-            @size-change="handleSizeChange"
-            @current-change="handleCurrentChange"
-            :current-page="currentPage"
-            :page-sizes="[5, 10, 20]"
-            :page-size="pageSize"
-            layout="total, sizes, prev, pager, next, jumper"
-            :total="tableData1.length"
-          >
-          </el-pagination>
-        </div>
       </el-tab-pane>
 
       <el-tab-pane label="已完成" name="third">
-        <el-table :data="
-            tableData2.slice(
-              (currentPage - 1) * pageSize,
-              currentPage * pageSize
-            )
-          " style="width: 100%" max-height="100%">
+        <el-table :data="tableData2" style="width: 100%" max-height="100%">
           <el-table-column
             fixed
             prop="workorderNumber"
@@ -157,19 +134,6 @@
             </template>
           </el-table-column>
         </el-table>
-        <div class="block" style="margin-top: 15px">
-          <el-pagination
-            align="center"
-            @size-change="handleSizeChange"
-            @current-change="handleCurrentChange"
-            :current-page="currentPage"
-            :page-sizes="[5, 10, 20]"
-            :page-size="pageSize"
-            layout="total, sizes, prev, pager, next, jumper"
-            :total="tableData2.length"
-          >
-          </el-pagination>
-        </div>
       </el-tab-pane>
     </el-tabs>
   </el-card>
@@ -263,7 +227,7 @@ export default {
       activeName: "first",
       currentPage: 1, // 当前页码
       total: 20, // 总条数
-      pageSize: 5, // 每页的数据条数
+      pageSize: 10, // 每页的数据条数
     };
   },
   created() {

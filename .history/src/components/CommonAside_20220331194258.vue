@@ -43,6 +43,13 @@ export default {
     return {
       menu: [
         {
+          path: "/",
+          name: "repair",
+          label: "首页",
+          icon: "s-home",
+          url: "Result/Repaired",
+        },
+        {
           path: "/form",
           name: "form",
           label: "工单管理",
@@ -87,7 +94,7 @@ export default {
 
 <style lang="scss" scoped>
 .el-menu {
-  height: 100vh;
+  height: 100%;
   border: none;
   h3 {
     color: #ffffff;

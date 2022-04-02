@@ -2,16 +2,8 @@
   <el-card>
     <el-tabs v-model="activeName" @tab-click="handleClick">
       <el-tab-pane label="待审核" name="first">
-        <el-table
-          :data="
-            tableData.slice(
-              (currentPage - 1) * pageSize,
-              currentPage * pageSize
-            )
-          "
-          style="width: 100%"
-          max-height="100%"
-        >
+
+        <el-table :data="tableData" style="width: 100%" max-height="100%">
           <el-table-column
             fixed
             prop="workorderNumber"
@@ -46,27 +38,15 @@
             </template>
           </el-table-column>
         </el-table>
-        <div class="block" style="margin-top: 15px">
-          <el-pagination
-            align="center"
-            @size-change="handleSizeChange"
-            @current-change="handleCurrentChange"
-            :current-page="currentPage"
-            :page-sizes="[5, 10, 20]"
-            :page-size="pageSize"
-            layout="total, sizes, prev, pager, next, jumper"
-            :total="tableData.length"
-          >
-          </el-pagination>
-        </div>
+        <el-pagination
+  :page-size="20"
+  :pager-count="11"
+  layout="prev, pager, next"
+  :total="1000">
+</el-pagination>
       </el-tab-pane>
       <el-tab-pane label="待维修" name="second">
-        <el-table :data="
-            tableData1.slice(
-              (currentPage - 1) * pageSize,
-              currentPage * pageSize
-            )
-          " style="width: 100%" max-height="100%">
+        <el-table :data="tableData1" style="width: 100%" max-height="100%">
           <el-table-column
             fixed
             prop="workorderNumber"
@@ -101,28 +81,10 @@
             </template>
           </el-table-column>
         </el-table>
-        <div class="block" style="margin-top: 15px">
-          <el-pagination
-            align="center"
-            @size-change="handleSizeChange"
-            @current-change="handleCurrentChange"
-            :current-page="currentPage"
-            :page-sizes="[5, 10, 20]"
-            :page-size="pageSize"
-            layout="total, sizes, prev, pager, next, jumper"
-            :total="tableData1.length"
-          >
-          </el-pagination>
-        </div>
       </el-tab-pane>
 
       <el-tab-pane label="已完成" name="third">
-        <el-table :data="
-            tableData2.slice(
-              (currentPage - 1) * pageSize,
-              currentPage * pageSize
-            )
-          " style="width: 100%" max-height="100%">
+        <el-table :data="tableData2" style="width: 100%" max-height="100%">
           <el-table-column
             fixed
             prop="workorderNumber"
@@ -157,19 +119,6 @@
             </template>
           </el-table-column>
         </el-table>
-        <div class="block" style="margin-top: 15px">
-          <el-pagination
-            align="center"
-            @size-change="handleSizeChange"
-            @current-change="handleCurrentChange"
-            :current-page="currentPage"
-            :page-sizes="[5, 10, 20]"
-            :page-size="pageSize"
-            layout="total, sizes, prev, pager, next, jumper"
-            :total="tableData2.length"
-          >
-          </el-pagination>
-        </div>
       </el-tab-pane>
     </el-tabs>
   </el-card>
@@ -178,17 +127,6 @@
 <script>
 export default {
   methods: {
-    //每页条数改变时触发 选择一页显示多少行
-    handleSizeChange(val) {
-      console.log(`每页 ${val} 条`);
-      this.currentPage = 1;
-      this.pageSize = val;
-    },
-    //当前页改变时触发 跳转其他页
-    handleCurrentChange(val) {
-      console.log(`当前页: ${val}`);
-      this.currentPage = val;
-    },
     Booking(row) {
       console.log(row.workorderNumber);
       this.$router.push({
@@ -196,14 +134,14 @@ export default {
         params: { workorderNumber: row.workorderNumber },
       });
     },
-    Booking1(row) {
+     Booking1(row) {
       console.log(row.workorderNumber);
       this.$router.push({
         name: "repaired",
         params: { workorderNumber: row.workorderNumber },
       });
     },
-    Booking2(row) {
+     Booking2(row) {
       console.log(row.workorderNumber);
       this.$router.push({
         name: "completed",
@@ -255,15 +193,11 @@ export default {
   },
   data() {
     return {
-      totalCount: 0,
       tableData: [],
       tableData1: [],
       tableData2: [],
       state: ["待维修", "维修中", "维修完成"],
       activeName: "first",
-      currentPage: 1, // 当前页码
-      total: 20, // 总条数
-      pageSize: 5, // 每页的数据条数
     };
   },
   created() {

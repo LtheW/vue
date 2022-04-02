@@ -166,7 +166,7 @@
             :page-sizes="[5, 10, 20]"
             :page-size="pageSize"
             layout="total, sizes, prev, pager, next, jumper"
-            :total="tableData2.length"
+            :total="tableData.length"
           >
           </el-pagination>
         </div>

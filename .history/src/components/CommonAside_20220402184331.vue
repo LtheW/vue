@@ -87,7 +87,7 @@ export default {
 
 <style lang="scss" scoped>
 .el-menu {
-  height: 100vh;
+  height: 100%;
   border: none;
   h3 {
     color: #ffffff;

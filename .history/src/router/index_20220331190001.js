@@ -5,7 +5,6 @@ import Submit from '../views/Results/Submit.vue'
 import Maintainer_Add from '../views/Maintainer/Add.vue'
 import Login from '../views/Login.vue'
 import Repaired from '../views/Results/Repaired.vue'
-import Completed from '../views/Results/Completed.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -30,7 +29,7 @@ const routes = [
         component: () => import('@/views/Form/Form')
       },
       {
-        path: '/maintainer',
+        path: '/home',
         name: 'Maintainer',
         component: () => import('@/views/Maintainer/Maintainer')
       },
@@ -38,16 +37,6 @@ const routes = [
         path: '/submit',
         name: 'submit',
         component: Submit,
-      },
-      {
-        path: '/repaired',
-        name: 'repaired',
-        component: Repaired,
-      },
-      {
-        path: '/completed',
-        name: 'completed',
-        component: Completed,
       },
 
       {

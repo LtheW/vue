@@ -5,7 +5,6 @@ import Submit from '../views/Results/Submit.vue'
 import Maintainer_Add from '../views/Maintainer/Add.vue'
 import Login from '../views/Login.vue'
 import Repaired from '../views/Results/Repaired.vue'
-import Completed from '../views/Results/Completed.vue'
 Vue.use(VueRouter)
 
 const routes = [
